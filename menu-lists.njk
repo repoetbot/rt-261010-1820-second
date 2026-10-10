@@ -1,0 +1,18 @@
+---
+layout: layout.njk
+pagination:
+  data: collections.menuLists
+  size: 1
+  alias: list
+permalink: "{{ list.url }}"
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  title: "{{ list.label }}"
+---
+{#- A menu tag's list at its own address: blog.json "menu", "path". The menu
+    above starts with the way back to every post, so none is repeated here. -#}
+{%- from "post-row.njk" import postRow %}
+<h1>{{ list.label }}</h1>
+<ul class="posts">
+  {%- for post in list.posts %}{{ postRow(post) }}{% endfor %}
+</ul>
